@@ -1,0 +1,182 @@
+/* ==========================================================================
+   Horus Barbershop - Custom Stylesheet & Design Tokens
+   Theme: Premium, Masculine, Dark Elegance with Warm Amber/Gold Accents
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
+
+:root {
+  --color-bg-primary: #09090b; /* zinc-950 */
+  --color-bg-secondary: #18181b; /* zinc-900 */
+  --color-bg-card: #141416;
+  --color-border: #27272a; /* zinc-800 */
+  --color-gold-500: #f59e0b; /* amber-500 */
+  --color-gold-600: #d97706; /* amber-600 */
+  --color-gold-light: #fbbf24;
+  --color-gold-glow: rgba(217, 119, 6, 0.25);
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: #f4f4f5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography Overrides */
+.font-serif-luxury {
+  font-family: var(--font-serif);
+}
+
+.font-sans-modern {
+  font-family: var(--font-sans);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d97706;
+}
+
+/* Luxury Gold Gradients & Glows */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #fef3c7 0%, #f59e0b 50%, #b45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+}
+
+.gold-border-glow {
+  box-shadow: 0 0 20px -3px rgba(217, 119, 6, 0.25);
+}
+
+.card-luxury {
+  background-color: #141416;
+  border: 1px solid #27272a;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-luxury:hover {
+  border-color: #b45309;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.7), 0 0 16px -2px rgba(217, 119, 6, 0.15);
+}
+
+/* Grayscale Image Effect (As requested in design guidelines) */
+.img-hover-color {
+  filter: grayscale(85%) contrast(105%);
+  transition: filter 0.5s ease, transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.group:hover .img-hover-color,
+.img-hover-color:hover {
+  filter: grayscale(0%) contrast(100%);
+  transform: scale(1.04);
+}
+
+/* WhatsApp Message Preview Bubble */
+.whatsapp-chat-bubble {
+  background-color: #0b141a;
+  border: 1px solid #222d34;
+  border-left: 4px solid #25d366;
+  position: relative;
+}
+
+.whatsapp-message-box {
+  background-color: #005c4b;
+  color: #e9edef;
+  border-radius: 8px 0px 8px 8px;
+  position: relative;
+}
+
+.whatsapp-message-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid #005c4b;
+  border-right: 8px solid transparent;
+}
+
+/* Luxury Divider */
+.gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.gold-divider::before,
+.gold-divider::after {
+  content: '';
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, #d97706);
+}
+.gold-divider::after {
+  background: linear-gradient(90deg, #d97706, transparent);
+}
+
+/* Subtle Shimmer Animation */
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-btn {
+  background: linear-gradient(90deg, #d97706 0%, #fbbf24 50%, #d97706 100%);
+  background-size: 200% auto;
+  transition: all 0.3s ease;
+}
+
+.shimmer-btn:hover {
+  background-position: right center;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+}
+
+/* Pulse animation for active indicator */
+@keyframes statusPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.15);
+  }
+}
+
+.status-pulse {
+  animation: statusPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Mobile backdrop blur */
+.mobile-nav-backdrop {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}

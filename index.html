@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HORUS Barbershop | The Royal Standard of Gentlemen's Grooming</title>
+  <meta name="description" content="Horus Barbershop - Barbershop premium dengan standar pangkas rambut bangsawan, ritual hot towel shave tradisional, dan booking instan WhatsApp multi-cabang." />
+  <meta name="keywords" content="barbershop premium, pangkas rambut pria, hot towel shave, skin fade, horus barbershop, barbershop jakarta, barbershop surabaya, barbershop medan" />
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦅</text></svg>">
+
+  <!-- Google Fonts: Playfair Display (Serif) & Montserrat (Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Tailwind CSS via CDN with Brand Customization -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#d97706',
+              goldLight: '#f59e0b',
+              goldDark: '#b45309',
+              goldPale: '#fef3c7',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Montserrat"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-neutral-950 text-gray-100 font-sans selection:bg-amber-600 selection:text-white">
+
+  <!-- ==========================================================================
+       1. Sticky Luxury Navigation Bar
+       ========================================================================== -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent py-4 px-4 sm:px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#home" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 border border-amber-500/60 bg-neutral-900 flex items-center justify-center text-amber-500 group-hover:border-amber-400 group-hover:scale-105 transition-all">
+          <i class="fa-solid fa-crown text-base text-amber-400"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif text-2xl font-bold tracking-[0.25em] text-white group-hover:text-amber-400 transition-colors uppercase leading-none">
+            HORUS
+          </span>
+          <span class="text-[9px] font-semibold tracking-[0.35em] text-amber-500 uppercase mt-1">
+            Barbershop
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden lg:flex items-center space-x-8 text-xs uppercase tracking-widest font-medium text-neutral-300">
+        <a href="#home" class="hover:text-amber-400 transition-colors">Home</a>
+        <a href="#about" class="hover:text-amber-400 transition-colors">Philosophy</a>
+        <a href="#services" class="hover:text-amber-400 transition-colors">Services</a>
+        <a href="#barbers" class="hover:text-amber-400 transition-colors">Master Barbers</a>
+        <a href="#lookbook" class="hover:text-amber-400 transition-colors">Lookbook</a>
+        <a href="#branches" class="hover:text-amber-400 transition-colors">Branches</a>
+      </nav>
+
+      <!-- Desktop CTA & Contact -->
+      <div class="hidden sm:flex items-center gap-4">
+        <a 
+          href="#booking" 
+          class="shimmer-btn text-white text-xs uppercase tracking-widest font-bold py-2.5 px-6 rounded-none transition-all shadow-lg flex items-center gap-2"
+        >
+          <i class="fa-brands fa-whatsapp text-sm"></i>
+          <span>Book Now</span>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button 
+        id="mobileMenuBtn" 
+        class="lg:hidden p-2 text-neutral-300 hover:text-amber-500 focus:outline-none" 
+        aria-label="Buka Menu Navigasi"
+      >
+        <i class="fa-solid fa-bars text-2xl text-amber-500"></i>
+      </button>
+
+    </div>
+
+    <!-- Mobile Drawer / Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden mt-4 pt-4 pb-6 px-4 bg-neutral-900/95 mobile-nav-backdrop border-y border-neutral-800 space-y-4">
+      <nav class="flex flex-col space-y-3 text-sm uppercase tracking-wider font-medium text-neutral-200">
+        <a href="#home" class="mobile-nav-link hover:text-amber-400 py-1 border-b border-neutral-800/50">Home</a>
+        <a href="#about" class="mobile-nav-link hover:text-amber-400 py-1 border-b border-neutral-800/50">Philosophy & About</a>
+        <a href="#services" class="mobile-nav-link hover:text-amber-400 py-1 border-b border-neutral-800/50">Services & Pricing</a>
+        <a href="#barbers" class="mobile-nav-link hover:text-amber-400 py-1 border-b border-neutral-800/50">Master Barbers</a>
+        <a href="#lookbook" class="mobile-nav-link hover:text-amber-400 py-1 border-b border-neutral-800/50">Lookbook Gallery</a>
+        <a href="#branches" class="mobile-nav-link hover:text-amber-400 py-1 border-b border-neutral-800/50">Branches & Contact</a>
+      </nav>
+      <div class="pt-2">
+        <a 
+          href="#booking" 
+          class="mobile-nav-link block w-full text-center bg-amber-600 hover:bg-amber-500 text-white text-xs uppercase tracking-widest font-bold py-3 rounded-none transition-colors"
+        >
+          <i class="fa-brands fa-whatsapp mr-2"></i> Book Appointment Sekarang
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       2. Hero Section
+       ========================================================================== -->
+  <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 overflow-hidden">
+    <!-- Hero Background Image with Moody Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2000&q=80" 
+        alt="Interior Horus Barbershop Luxury" 
+        class="w-full h-full object-cover object-center filter brightness-40 scale-105 transform animate-pulse duration-10000"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/80 to-neutral-950/60"></div>
+      <!-- Subtle Radial Glow -->
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(217,119,6,0.15)_0,transparent_70%)]"></div>
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto text-center mt-6">
+      
+      <!-- Top Badge -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 border border-amber-500/40 bg-neutral-900/80 backdrop-blur-sm mb-6 rounded-none">
+        <span class="w-2 h-2 rounded-full bg-amber-500 status-pulse"></span>
+        <span class="text-xs uppercase tracking-[0.25em] text-amber-300 font-semibold">
+          EST. 2020 • THE GENTLEMEN'S SANCTUARY
+        </span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-wide leading-tight text-white mb-6">
+        The Royal Standard of <br />
+        <span class="gold-gradient-text italic font-serif">Gentlemen's Grooming</span>
+      </h1>
+
+      <!-- Sub-headline -->
+      <p class="max-w-2xl mx-auto text-base sm:text-lg text-gray-300 font-light leading-relaxed mb-10">
+        Perpaduan presisi gunting maestro, ketajaman mata elang, dan kenyamanan executive lounge. Hadirkan kepercayaan diri sejati pria di setiap detail potongan rambut Anda.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <a 
+          href="#booking" 
+          class="w-full sm:w-auto shimmer-btn text-white text-xs uppercase tracking-widest font-bold py-4 px-8 rounded-none transition-all flex items-center justify-center gap-3 shadow-2xl"
+        >
+          <i class="fa-solid fa-calendar-check text-sm"></i>
+          <span>Book an Appointment</span>
+        </a>
+        <a 
+          href="#services" 
+          class="w-full sm:w-auto bg-neutral-900/80 hover:bg-neutral-800 text-amber-400 border border-neutral-700 hover:border-amber-500 text-xs uppercase tracking-widest font-semibold py-4 px-8 rounded-none transition-all flex items-center justify-center gap-2"
+        >
+          <span>Explore Services</span>
+          <i class="fa-solid fa-arrow-down text-xs"></i>
+        </a>
+      </div>
+
+      <!-- Key Trust Highlights / Metrics -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-neutral-800/80 text-left">
+        <div class="p-3">
+          <div class="flex items-center gap-1.5 text-amber-500 mb-1">
+            <i class="fa-solid fa-star text-xs"></i>
+            <span class="text-sm font-bold text-white">4.9 / 5.0</span>
+          </div>
+          <p class="text-[11px] text-gray-400 uppercase tracking-wider">1.500+ Reviews</p>
+        </div>
+        <div class="p-3">
+          <div class="flex items-center gap-1.5 text-amber-500 mb-1">
+            <i class="fa-solid fa-certificate text-xs"></i>
+            <span class="text-sm font-bold text-white">100% Sterile</span>
+          </div>
+          <p class="text-[11px] text-gray-400 uppercase tracking-wider">Razor Protocol</p>
+        </div>
+        <div class="p-3">
+          <div class="flex items-center gap-1.5 text-amber-500 mb-1">
+            <i class="fa-solid fa-mug-hot text-xs"></i>
+            <span class="text-sm font-bold text-white">VIP Lounge</span>
+          </div>
+          <p class="text-[11px] text-gray-400 uppercase tracking-wider">Artisan Espresso</p>
+        </div>
+        <div class="p-3">
+          <div class="flex items-center gap-1.5 text-amber-500 mb-1">
+            <i class="fa-solid fa-location-dot text-xs"></i>
+            <span class="text-sm font-bold text-white">3 Branches</span>
+          </div>
+          <p class="text-[11px] text-gray-400 uppercase tracking-wider">JKT • SBY • MDN</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3. About / Philosophy Section
+       ========================================================================== -->
+  <section id="about" class="py-24 px-4 bg-neutral-900/40 relative border-t border-neutral-800/60">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Image Showcase with Gold Accent Frame -->
+        <div class="lg:col-span-5 relative group">
+          <div class="relative z-10 aspect-[4/5] bg-neutral-950 border border-neutral-800 overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1000&q=80" 
+              alt="Horus Barbershop Classic Tools & Craftsmanship" 
+              class="w-full h-full object-cover img-hover-color"
+            />
+          </div>
+          <!-- Decorative geometric offset frame -->
+          <div class="absolute -bottom-4 -right-4 w-full h-full border border-amber-600/40 z-0 pointer-events-none hidden sm:block"></div>
+          
+          <!-- Experience Badge -->
+          <div class="absolute bottom-6 left-6 z-20 bg-neutral-950/90 border border-amber-500/50 p-4 shadow-xl">
+            <span class="font-serif text-3xl font-bold text-amber-400 block leading-none">6+</span>
+            <span class="text-[10px] uppercase tracking-widest text-gray-300 font-semibold mt-1 block">
+              Years of Dedication
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: Story, Vision & Value Pillars -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <div class="space-y-2">
+            <span class="text-xs uppercase tracking-[0.25em] text-amber-500 font-semibold block">
+              THE PHILOSOPHY
+            </span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white tracking-wide leading-tight">
+              Seni Ketajaman, <br />
+              <span class="gold-gradient-text italic font-serif">Kenyamanan Bangsawan</span>
+            </h2>
+          </div>
+
+          <p class="text-gray-300 font-light leading-relaxed text-sm sm:text-base">
+            Terinspirasi dari filosofi <strong>Horus</strong> — simbol mata elang Mesir kuno yang melambangkan visi tajam, kejernihan, dan kesempurnaan. Di Horus Barbershop, kami meyakini bahwa pangkas rambut bukan sekadar memendekkan helai, melainkan seni arsitektur wajah dan wujud penghormatan diri seorang pria.
+          </p>
+
+          <p class="text-gray-400 font-light leading-relaxed text-sm">
+            Setiap gentleman disambut dalam ruang tenang bernuansa kayu gelap dan aroma khas <em>sandalwood</em>. Didukung oleh kapster berpengalaman bersertifikasi, protokol pisau silet baru 100% sekali pakai, serta rangkaian produk grooming premium dunia.
+          </p>
+
+          <!-- 4 Pillars Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+            <div class="card-luxury p-4 rounded-none border border-neutral-800">
+              <div class="w-8 h-8 rounded-none bg-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-2">
+                <i class="fa-solid fa-scissors text-sm"></i>
+              </div>
+              <h4 class="font-serif text-sm font-bold text-white mb-1">Master Craftsmanship</h4>
+              <p class="text-xs text-gray-400 font-light">Teknik gunting manual presisi dan gradasi fade mulus sesuai kontur kepala.</p>
+            </div>
+
+            <div class="card-luxury p-4 rounded-none border border-neutral-800">
+              <div class="w-8 h-8 rounded-none bg-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-2">
+                <i class="fa-solid fa-shield-halved text-sm"></i>
+              </div>
+              <h4 class="font-serif text-sm font-bold text-white mb-1">Sterile Protocol</h4>
+              <p class="text-xs text-gray-400 font-light">100% silet baru steril di depan mata Anda & alat disterilisasi sinar UV.</p>
+            </div>
+
+            <div class="card-luxury p-4 rounded-none border border-neutral-800">
+              <div class="w-8 h-8 rounded-none bg-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-2">
+                <i class="fa-solid fa-spa text-sm"></i>
+              </div>
+              <h4 class="font-serif text-sm font-bold text-white mb-1">Hot Towel Ritual</h4>
+              <p class="text-xs text-gray-400 font-light">Handuk uap hangat aromaterapi pembuka pori-pori untuk sensasi relaksasi total.</p>
+            </div>
+
+            <div class="card-luxury p-4 rounded-none border border-neutral-800">
+              <div class="w-8 h-8 rounded-none bg-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-2">
+                <i class="fa-solid fa-couch text-sm"></i>
+              </div>
+              <h4 class="font-serif text-sm font-bold text-white mb-1">Executive Hospitality</h4>
+              <p class="text-xs text-gray-400 font-light">Nikmati sajian kopi single origin, wifi cepat, dan lounge yang privat.</p>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <a 
+              href="#services" 
+              class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-amber-400 font-bold hover:text-amber-300 transition-colors"
+            >
+              <span>Pelajari Layanan Kami</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. Services & Pricing Section
+       ========================================================================== -->
+  <section id="services" class="py-24 px-4 bg-neutral-950 relative border-t border-neutral-800/60">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs uppercase tracking-[0.25em] text-amber-500 font-semibold block mb-2">
+          MENU & PRICING
+        </span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white uppercase tracking-wide mb-4">
+          Layanan & Tarif <span class="gold-gradient-text italic font-serif">Eksklusif</span>
+        </h2>
+        <div class="gold-divider my-4">
+          <i class="fa-solid fa-crown text-amber-500 text-xs"></i>
+        </div>
+        <p class="text-gray-400 text-sm font-light">
+          Setiap layanan dirancang untuk memberikan hasil akhir terbaik dengan kenyamanan maksimal. Klik tombol "Pilih Layanan" untuk langsung mengisi formulir booking.
+        </p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="flex items-center justify-center flex-wrap gap-2 mb-12">
+        <button 
+          data-category="all" 
+          class="service-filter-btn py-2 px-5 text-xs uppercase tracking-wider font-semibold bg-amber-600 text-white border border-amber-600 rounded-none transition-all"
+        >
+          Semua Layanan
+        </button>
+        <button 
+          data-category="haircut" 
+          class="service-filter-btn py-2 px-5 text-xs uppercase tracking-wider font-semibold bg-neutral-900 text-gray-300 border border-neutral-800 hover:border-neutral-600 rounded-none transition-all"
+        >
+          Haircut & Styling
+        </button>
+        <button 
+          data-category="shave" 
+          class="service-filter-btn py-2 px-5 text-xs uppercase tracking-wider font-semibold bg-neutral-900 text-gray-300 border border-neutral-800 hover:border-neutral-600 rounded-none transition-all"
+        >
+          Beard & Shave
+        </button>
+        <button 
+          data-category="package" 
+          class="service-filter-btn py-2 px-5 text-xs uppercase tracking-wider font-semibold bg-neutral-900 text-gray-300 border border-neutral-800 hover:border-neutral-600 rounded-none transition-all"
+        >
+          VIP Packages
+        </button>
+        <button 
+          data-category="treatment" 
+          class="service-filter-btn py-2 px-5 text-xs uppercase tracking-wider font-semibold bg-neutral-900 text-gray-300 border border-neutral-800 hover:border-neutral-600 rounded-none transition-all"
+        >
+          Scalp & Color
+        </button>
+      </div>
+
+      <!-- Services Grid (Populated dynamically by js/app.js) -->
+      <div id="servicesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Quick Note Banner -->
+      <div class="mt-12 p-6 bg-neutral-900/60 border border-neutral-800 rounded-none flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-1">
+            Mencari Perawatan Grooming Personal / Korporasi?
+          </h4>
+          <p class="text-xs text-gray-400 font-light">
+            Kami juga menyediakan layanan Grooming Wedding Session, Private Lounge Booking, dan Corporate Grooming Voucher.
+          </p>
+        </div>
+        <a 
+          href="#booking" 
+          class="shrink-0 py-2.5 px-6 text-xs uppercase tracking-widest font-semibold bg-neutral-800 hover:bg-neutral-700 text-amber-400 border border-amber-600/40 rounded-none transition-colors"
+        >
+          Konsultasi WhatsApp
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. The Master Barbers Section
+       ========================================================================== -->
+  <section id="barbers" class="py-24 px-4 bg-neutral-900/30 relative border-t border-neutral-800/60">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs uppercase tracking-[0.25em] text-amber-500 font-semibold block mb-2">
+          MEET THE MASTERS
+        </span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white uppercase tracking-wide mb-4">
+          Tim Kapster <span class="gold-gradient-text italic font-serif">Profesional</span>
+        </h2>
+        <div class="gold-divider my-4">
+          <i class="fa-solid fa-scissors text-amber-500 text-xs"></i>
+        </div>
+        <p class="text-gray-400 text-sm font-light">
+          Setiap kapster di Horus Barbershop telah melalui seleksi ketat dan memiliki jam terbang tinggi dalam teknik gunting manual, skin fade, dan razor shave.
+        </p>
+      </div>
+
+      <!-- Barbers Cards Grid (Populated dynamically) -->
+      <div id="barbersContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Injected via JavaScript -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. Gallery / Lookbook Section
+       ========================================================================== -->
+  <section id="lookbook" class="py-24 px-4 bg-neutral-950 relative border-t border-neutral-800/60">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs uppercase tracking-[0.25em] text-amber-500 font-semibold block mb-2">
+          HAIRSTYLE INSPIRATION
+        </span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white uppercase tracking-wide mb-4">
+          Galeri <span class="gold-gradient-text italic font-serif">Lookbook</span>
+        </h2>
+        <div class="gold-divider my-4">
+          <i class="fa-solid fa-camera text-amber-500 text-xs"></i>
+        </div>
+        <p class="text-gray-400 text-sm font-light">
+          Inspirasi potongan rambut terbaik dari meja pangkas kami. Dari classic gentlemen cut hingga contemporary fade.
+        </p>
+      </div>
+
+      <!-- Lookbook Grid (Populated dynamically) -->
+      <div id="lookbookContainer" class="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+        <!-- Injected via JavaScript -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. Client Testimonials Section
+       ========================================================================== -->
+  <section class="py-20 px-4 bg-neutral-900/40 relative border-t border-neutral-800/60">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs uppercase tracking-[0.25em] text-amber-500 font-semibold block mb-2">
+          TESTIMONIALS
+        </span>
+        <h2 class="font-serif text-2xl sm:text-4xl font-bold text-white uppercase tracking-wide">
+          Apa Kata Para <span class="gold-gradient-text italic font-serif">Gentlemen</span>
+        </h2>
+      </div>
+
+      <div id="testimonialsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Injected via JavaScript -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       8. Multi-Branch Booking System (WhatsApp Checkout Hub - CORE LOGIC)
+       ========================================================================== -->
+  <section id="booking" class="py-24 px-4 bg-neutral-950 relative border-t border-neutral-800/60">
+    
+    <!-- Background glow ambient -->
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(217,119,6,0.08)_0,transparent_60%)] pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto relative z-10">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-600/10 border border-amber-500/30 text-amber-400 text-[10px] uppercase font-bold tracking-widest mb-3">
+          <i class="fa-brands fa-whatsapp text-xs text-emerald-400"></i>
+          Direct WhatsApp Checkout
+        </div>
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white uppercase tracking-wide mb-4">
+          Reservasi Jadwal <span class="gold-gradient-text italic font-serif">Kunjungan</span>
+        </h2>
+        <div class="gold-divider my-4">
+          <i class="fa-solid fa-calendar-check text-amber-500 text-xs"></i>
+        </div>
+        <p class="text-gray-400 text-sm font-light">
+          Pilih cabang terdekat, tentukan layanan dan kapster favorit Anda. Sistem kami akan menyusun pesan booking otomatis ke WhatsApp resmi cabang pilihan Anda tanpa ribet.
+        </p>
+      </div>
+
+      <!-- Booking Interactive Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left Column: The Interactive Booking Form -->
+        <div class="lg:col-span-7 card-luxury p-6 sm:p-8 rounded-none border border-neutral-800">
+          
+          <form id="bookingForm" class="space-y-6">
+            
+            <!-- Step 1: Branch Selection -->
+            <div>
+              <label for="bookingBranch" class="block text-xs uppercase tracking-wider text-amber-400 font-bold mb-2">
+                1. Pilih Cabang Barbershop <span class="text-red-400">*</span>
+              </label>
+              <div class="relative">
+                <select 
+                  id="bookingBranch" 
+                  name="branch" 
+                  required
+                  class="w-full bg-neutral-900 border border-neutral-700 text-white text-sm px-4 py-3 rounded-none focus:outline-none focus:border-amber-500 transition-colors appearance-none cursor-pointer"
+                >
+                  <!-- Populated via js/app.js -->
+                </select>
+                <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-neutral-400">
+                  <i class="fa-solid fa-chevron-down text-xs"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Service Selection -->
+            <div>
+              <label for="bookingService" class="block text-xs uppercase tracking-wider text-amber-400 font-bold mb-2">
+                2. Pilih Layanan Grooming <span class="text-red-400">*</span>
+              </label>
+              <div class="relative">
+                <select 
+                  id="bookingService" 
+                  name="service" 
+                  required
+                  class="w-full bg-neutral-900 border border-neutral-700 text-white text-sm px-4 py-3 rounded-none focus:outline-none focus:border-amber-500 transition-colors appearance-none cursor-pointer"
+                >
+                  <!-- Populated via js/app.js -->
+                </select>
+                <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-neutral-400">
+                  <i class="fa-solid fa-chevron-down text-xs"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Barber Selection -->
+            <div>
+              <label for="bookingBarber" class="block text-xs uppercase tracking-wider text-amber-400 font-bold mb-2">
+                3. Pilihan Barber / Kapster
+              </label>
+              <div class="relative">
+                <select 
+                  id="bookingBarber" 
+                  name="barber" 
+                  class="w-full bg-neutral-900 border border-neutral-700 text-white text-sm px-4 py-3 rounded-none focus:outline-none focus:border-amber-500 transition-colors appearance-none cursor-pointer"
+                >
+                  <!-- Populated via js/app.js -->
+                </select>
+                <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-neutral-400">
+                  <i class="fa-solid fa-chevron-down text-xs"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Date & Time Selection -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="bookingDate" class="block text-xs uppercase tracking-wider text-amber-400 font-bold mb-2">
+                  4. Tanggal Kunjungan <span class="text-red-400">*</span>
+                </label>
+                <input 
+                  type="date" 
+                  id="bookingDate" 
+                  name="date" 
+                  required
+                  class="w-full bg-neutral-900 border border-neutral-700 text-white text-sm px-4 py-3 rounded-none focus:outline-none focus:border-amber-500 transition-colors cursor-pointer"
+                />
+              </div>
+
+              <div>
+                <label for="bookingTime" class="block text-xs uppercase tracking-wider text-amber-400 font-bold mb-2">
+                  Jam Kunjungan <span class="text-red-400">*</span>
+                </label>
+                <div class="relative">
+                  <select 
+                    id="bookingTime" 
+                    name="time" 
+                    required
+                    class="w-full bg-neutral-900 border border-neutral-700 text-white text-sm px-4 py-3 rounded-none focus:outline-none focus:border-amber-500 transition-colors appearance-none cursor-pointer"
+                  >
+                    <!-- Populated via js/app.js -->
+                  </select>
+                  <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-neutral-400">
+                    <i class="fa-solid fa-clock text-xs"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5: Customer Details -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="bookingName" class="block text-xs uppercase tracking-wider text-amber-400 font-bold mb-2">
+                  5. Nama Lengkap Anda <span class="text-red-400">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="bookingName" 
+                  name="name" 
+                  placeholder="Contoh: Budi Pratama"
+                  required
+                  class="w-full bg-neutral-900 border border-neutral-700 text-white text-sm px-4 py-3 rounded-none focus:outline-none focus:border-amber-500 transition-colors"
+                />
+              </div>
+
+              <div>
+                <label for="bookingPhone" class="block text-xs uppercase tracking-wider text-amber-400 font-bold mb-2">
+                  No. WhatsApp Anda (Opsional)
+                </label>
+                <input 
+                  type="tel" 
+                  id="bookingPhone" 
+                  name="phone" 
+                  placeholder="08123456789"
+                  class="w-full bg-neutral-900 border border-neutral-700 text-white text-sm px-4 py-3 rounded-none focus:outline-none focus:border-amber-500 transition-colors"
+                />
+              </div>
+            </div>
+
+            <!-- Step 6: Special Requests / Notes -->
+            <div>
+              <label for="bookingNotes" class="block text-xs uppercase tracking-wider text-neutral-400 font-bold mb-2">
+                Catatan Khusus / Preferensi Gaya (Opsional)
+              </label>
+              <textarea 
+                id="bookingNotes" 
+                name="notes" 
+                rows="2"
+                placeholder="Contoh: Ingin konsultasi fade tipis untuk acara pesta besok."
+                class="w-full bg-neutral-900 border border-neutral-700 text-white text-sm px-4 py-2.5 rounded-none focus:outline-none focus:border-amber-500 transition-colors resize-none"
+              ></textarea>
+            </div>
+
+            <!-- Submit Button with Shimmer & WhatsApp Icon -->
+            <button 
+              type="submit" 
+              class="w-full shimmer-btn text-white text-sm uppercase tracking-widest font-bold py-4 px-6 rounded-none transition-all shadow-xl flex items-center justify-center gap-3 cursor-pointer group"
+            >
+              <i class="fa-brands fa-whatsapp text-xl text-emerald-300 group-hover:scale-110 transition-transform"></i>
+              <span>Kirim Booking via WhatsApp</span>
+            </button>
+
+            <p class="text-[11px] text-center text-neutral-500 font-light">
+              <i class="fa-solid fa-lock text-[10px] mr-1"></i> Data Anda aman dan langsung diteruskan ke WhatsApp resmi cabang yang Anda pilih.
+            </p>
+
+          </form>
+
+        </div>
+
+        <!-- Right Column: Branch Info & Live WhatsApp Preview Card -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- Live Branch Location Badge -->
+          <div class="card-luxury p-6 rounded-none border border-neutral-800">
+            <span class="text-[10px] uppercase font-bold tracking-widest text-amber-500 block mb-2">
+              CABANG TUJUAN BOOKING
+            </span>
+            <h3 id="previewBranchName" class="font-serif text-xl font-bold text-white mb-2">
+              Cabang Pusat (Jakarta Selatan)
+            </h3>
+            <p id="previewBranchAddress" class="text-xs text-neutral-400 leading-relaxed mb-4">
+              Jl. Senopati Raya No. 45, Kebayoran Baru, Jakarta Selatan
+            </p>
+            <div class="space-y-2 pt-3 border-t border-neutral-800/80 text-xs">
+              <div class="flex items-center gap-2 text-neutral-300">
+                <i class="fa-regular fa-clock text-amber-500"></i>
+                <span id="previewBranchHours">Senin - Minggu: 10.00 - 21.30 WIB</span>
+              </div>
+              <div class="flex items-center gap-2 text-neutral-300">
+                <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                <span>WA Aktif: <strong id="previewBranchPhone" class="text-white font-normal">+62 812-3456-7890</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- WhatsApp Chat Preview Simulation Bubble -->
+          <div class="whatsapp-chat-bubble p-5 rounded-none">
+            <div class="flex items-center justify-between border-b border-neutral-800 pb-3 mb-4">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-emerald-700/40 border border-emerald-500/50 flex items-center justify-center text-emerald-400">
+                  <i class="fa-brands fa-whatsapp text-sm"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-gray-200">Pratinjau Pesan WhatsApp</h4>
+                  <span class="text-[10px] text-emerald-400 flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
+                    Format Otomatis PRD
+                  </span>
+                </div>
+              </div>
+              <span class="text-[10px] text-neutral-500 uppercase tracking-widest font-mono">LIVE PREVIEW</span>
+            </div>
+
+            <!-- WhatsApp Message Bubble Box -->
+            <div class="whatsapp-message-box p-4 text-xs font-sans whitespace-pre-wrap leading-relaxed shadow-md">
+              <div id="waPreviewText" class="text-gray-100 font-light">
+                <!-- Injected via JavaScript updateWhatsAppPreview() -->
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-neutral-800/60 flex items-center justify-between text-[11px] text-neutral-400">
+              <span>Status: <strong class="text-emerald-400 font-normal">Siap Dikirim</strong></span>
+              <span>1 Klik ke WhatsApp</span>
+            </div>
+          </div>
+
+          <!-- FAQ / Note Accordion -->
+          <div class="p-4 bg-neutral-900/40 border border-neutral-800/60 text-xs text-neutral-400 space-y-2">
+            <div class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-info text-amber-500 mt-0.5 shrink-0"></i>
+              <p>Admin cabang akan membalas pesan WhatsApp Anda dalam waktu 5-15 menit untuk konfirmasi ketersediaan kursi & slot jam.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       9. Branches & Locations Section
+       ========================================================================== -->
+  <section id="branches" class="py-24 px-4 bg-neutral-900/30 relative border-t border-neutral-800/60">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-xs uppercase tracking-[0.25em] text-amber-500 font-semibold block mb-2">
+          OUR LOCATIONS
+        </span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white uppercase tracking-wide mb-4">
+          Jaringan Cabang <span class="gold-gradient-text italic font-serif">Horus</span>
+        </h2>
+        <div class="gold-divider my-4">
+          <i class="fa-solid fa-map-pin text-amber-500 text-xs"></i>
+        </div>
+        <p class="text-gray-400 text-sm font-light">
+          Temukan suasana pangkas rambut eksekutif terdekat di kota Anda. Setiap cabang memiliki nomor kontak dan tim reservasi tersendiri.
+        </p>
+      </div>
+
+      <!-- Branches Container (Populated dynamically) -->
+      <div id="branchesContainer" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Injected via JavaScript -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       10. Footer
+       ========================================================================== -->
+  <footer class="bg-neutral-950 border-t border-neutral-800 pt-16 pb-12 px-4 text-neutral-400 text-xs">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
+      
+      <!-- Brand & Mission -->
+      <div class="md:col-span-4 space-y-4">
+        <a href="#home" class="flex items-center gap-3">
+          <div class="w-8 h-8 border border-amber-500 bg-neutral-900 flex items-center justify-center text-amber-500">
+            <i class="fa-solid fa-crown text-sm text-amber-400"></i>
+          </div>
+          <span class="font-serif text-2xl font-bold tracking-[0.25em] text-white uppercase">
+            HORUS
+          </span>
+        </a>
+        <p class="text-gray-400 font-light leading-relaxed">
+          Premium barbershop landing page & booking platform. Menghadirkan tradisi pangkas rambut bangsawan, ketelitian potongan presisi, dan kenyamanan lounge bintang lima untuk pria berkelas.
+        </p>
+        <div class="flex items-center gap-3 pt-2">
+          <a 
+            href="https://instagram.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="w-9 h-9 bg-neutral-900 border border-neutral-800 hover:border-amber-500 hover:text-amber-500 flex items-center justify-center text-gray-300 transition-colors"
+            title="Instagram Horus"
+          >
+            <i class="fa-brands fa-instagram text-sm"></i>
+          </a>
+          <a 
+            href="https://tiktok.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="w-9 h-9 bg-neutral-900 border border-neutral-800 hover:border-amber-500 hover:text-amber-500 flex items-center justify-center text-gray-300 transition-colors"
+            title="TikTok Horus"
+          >
+            <i class="fa-brands fa-tiktok text-sm"></i>
+          </a>
+          <a 
+            href="https://youtube.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="w-9 h-9 bg-neutral-900 border border-neutral-800 hover:border-amber-500 hover:text-amber-500 flex items-center justify-center text-gray-300 transition-colors"
+            title="YouTube Horus"
+          >
+            <i class="fa-brands fa-youtube text-sm"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Nav Links -->
+      <div class="md:col-span-2 space-y-3">
+        <h4 class="font-serif text-sm font-bold text-white uppercase tracking-wider mb-2">Eksplorasi</h4>
+        <ul class="space-y-2 font-light">
+          <li><a href="#home" class="hover:text-amber-400 transition-colors">Home</a></li>
+          <li><a href="#about" class="hover:text-amber-400 transition-colors">Philosophy</a></li>
+          <li><a href="#services" class="hover:text-amber-400 transition-colors">Daftar Layanan</a></li>
+          <li><a href="#barbers" class="hover:text-amber-400 transition-colors">Master Barbers</a></li>
+          <li><a href="#lookbook" class="hover:text-amber-400 transition-colors">Galeri Lookbook</a></li>
+          <li><a href="#booking" class="hover:text-amber-400 transition-colors">Booking Online</a></li>
+        </ul>
+      </div>
+
+      <!-- Operating Hours & Protocol -->
+      <div class="md:col-span-3 space-y-3">
+        <h4 class="font-serif text-sm font-bold text-white uppercase tracking-wider mb-2">Jam Operasional</h4>
+        <div class="space-y-2 text-xs font-light">
+          <div class="flex justify-between border-b border-neutral-800 pb-1.5">
+            <span>Senin - Jumat</span>
+            <span class="text-gray-200">10:00 - 21:30 WIB</span>
+          </div>
+          <div class="flex justify-between border-b border-neutral-800 pb-1.5">
+            <span>Sabtu - Minggu</span>
+            <span class="text-gray-200">09:30 - 21:30 WIB</span>
+          </div>
+          <div class="flex justify-between border-b border-neutral-800 pb-1.5">
+            <span>Hari Libur Nasional</span>
+            <span class="text-amber-400">Tetap Buka</span>
+          </div>
+        </div>
+        <p class="text-[11px] text-neutral-500 pt-1">
+          *Disarankan reservasi melalui WhatsApp minimal 2 jam sebelum kunjungan.
+        </p>
+      </div>
+
+      <!-- Branch Quick Access -->
+      <div class="md:col-span-3 space-y-3">
+        <h4 class="font-serif text-sm font-bold text-white uppercase tracking-wider mb-2">Kontak Cabang</h4>
+        <ul class="space-y-2.5 text-xs font-light">
+          <li>
+            <strong class="text-white block font-medium">Jakarta Selatan (Pusat):</strong>
+            <span class="text-neutral-400">WA: +62 812-3456-7890</span>
+          </li>
+          <li>
+            <strong class="text-white block font-medium">Surabaya Barat (Citraland):</strong>
+            <span class="text-neutral-400">WA: +62 813-9876-5432</span>
+          </li>
+          <li>
+            <strong class="text-white block font-medium">Medan (Johor):</strong>
+            <span class="text-neutral-400">WA: +62 819-8765-4321</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="max-w-7xl mx-auto pt-8 border-t border-neutral-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-neutral-500">
+      <p>© <span class="current-year">2026</span> HORUS Barbershop. All Rights Reserved. Crafted for the Modern Gentleman.</p>
+      <div class="flex items-center gap-6">
+        <a href="#home" class="hover:text-amber-400 transition-colors">Back to Top <i class="fa-solid fa-arrow-up text-[10px] ml-1"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       11. Floating WhatsApp Quick Action Button
+       ========================================================================== -->
+  <div class="fixed bottom-6 right-6 z-40">
+    <a 
+      id="floatingWaBtn" 
+      href="#booking" 
+      class="group flex items-center gap-2.5 bg-emerald-600 hover:bg-emerald-500 text-white p-3.5 sm:px-4 sm:py-3 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 border border-emerald-400/40"
+      title="Chat WhatsApp Cabang Sekarang"
+    >
+      <i class="fa-brands fa-whatsapp text-2xl group-hover:scale-110 transition-transform"></i>
+      <span class="hidden sm:inline-block text-xs font-bold uppercase tracking-wider">
+        Chat Cabang
+      </span>
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+      </span>
+    </a>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

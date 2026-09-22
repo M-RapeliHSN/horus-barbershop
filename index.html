@@ -134,13 +134,16 @@
       />
       <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/80 to-neutral-950/60"></div>
       <!-- Subtle Radial Glow -->
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(217,119,6,0.15)_0,transparent_70%)]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(217,119,6,0.18)_0,transparent_70%)] spotlight-pulse"></div>
     </div>
+
+    <!-- Golden Particles Canvas -->
+    <canvas id="heroParticles"></canvas>
 
     <div class="relative z-10 max-w-5xl mx-auto text-center mt-6">
       
-      <!-- Top Badge -->
-      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 border border-amber-500/40 bg-neutral-900/80 backdrop-blur-sm mb-6 rounded-none">
+      <!-- Top Badge with Floating Animation -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 border border-amber-500/40 bg-neutral-900/80 backdrop-blur-sm mb-6 rounded-none animate-float-slow reveal-item">
         <span class="w-2 h-2 rounded-full bg-amber-500 status-pulse"></span>
         <span class="text-xs uppercase tracking-[0.25em] text-amber-300 font-semibold">
           EST. 2020 • THE GENTLEMEN'S SANCTUARY
@@ -148,61 +151,63 @@
       </div>
 
       <!-- Main Headline -->
-      <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-wide leading-tight text-white mb-6">
+      <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-wide leading-tight text-white mb-6 reveal-item delay-100">
         The Royal Standard of <br />
         <span class="gold-gradient-text italic font-serif">Gentlemen's Grooming</span>
       </h1>
 
       <!-- Sub-headline -->
-      <p class="max-w-2xl mx-auto text-base sm:text-lg text-gray-300 font-light leading-relaxed mb-10">
+      <p class="max-w-2xl mx-auto text-base sm:text-lg text-gray-300 font-light leading-relaxed mb-10 reveal-item delay-200">
         Perpaduan presisi gunting maestro, ketajaman mata elang, dan kenyamanan executive lounge. Hadirkan kepercayaan diri sejati pria di setiap detail potongan rambut Anda.
       </p>
 
       <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 reveal-item delay-300">
         <a 
           href="#booking" 
-          class="w-full sm:w-auto shimmer-btn text-white text-xs uppercase tracking-widest font-bold py-4 px-8 rounded-none transition-all flex items-center justify-center gap-3 shadow-2xl"
+          class="w-full sm:w-auto shimmer-btn text-white text-xs uppercase tracking-widest font-bold py-4 px-8 rounded-none transition-all flex items-center justify-center gap-3 shadow-2xl hover:scale-105 transform"
         >
           <i class="fa-solid fa-calendar-check text-sm"></i>
           <span>Book an Appointment</span>
         </a>
         <a 
           href="#services" 
-          class="w-full sm:w-auto bg-neutral-900/80 hover:bg-neutral-800 text-amber-400 border border-neutral-700 hover:border-amber-500 text-xs uppercase tracking-widest font-semibold py-4 px-8 rounded-none transition-all flex items-center justify-center gap-2"
+          class="w-full sm:w-auto bg-neutral-900/80 hover:bg-neutral-800 text-amber-400 border border-neutral-700 hover:border-amber-500 text-xs uppercase tracking-widest font-semibold py-4 px-8 rounded-none transition-all flex items-center justify-center gap-2 hover:scale-105 transform"
         >
           <span>Explore Services</span>
           <i class="fa-solid fa-arrow-down text-xs"></i>
         </a>
       </div>
 
-      <!-- Key Trust Highlights / Metrics -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-neutral-800/80 text-left">
-        <div class="p-3">
+      <!-- Key Trust Highlights / Metrics with Animated Counters -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-neutral-800/80 text-left reveal-item delay-400">
+        <div class="p-3 border-l border-amber-500/20 pl-4 hover:border-amber-500 transition-colors">
           <div class="flex items-center gap-1.5 text-amber-500 mb-1">
             <i class="fa-solid fa-star text-xs"></i>
-            <span class="text-sm font-bold text-white">4.9 / 5.0</span>
+            <span class="text-sm font-bold text-white" data-counter="4.9" data-decimals="1" data-suffix=" / 5.0">4.9 / 5.0</span>
           </div>
-          <p class="text-[11px] text-gray-400 uppercase tracking-wider">1.500+ Reviews</p>
+          <p class="text-[11px] text-gray-400 uppercase tracking-wider">
+            <span data-counter="1500" data-suffix="+">1.500+</span> Reviews
+          </p>
         </div>
-        <div class="p-3">
+        <div class="p-3 border-l border-amber-500/20 pl-4 hover:border-amber-500 transition-colors">
           <div class="flex items-center gap-1.5 text-amber-500 mb-1">
             <i class="fa-solid fa-certificate text-xs"></i>
-            <span class="text-sm font-bold text-white">100% Sterile</span>
+            <span class="text-sm font-bold text-white" data-counter="100" data-suffix="%">100%</span>
           </div>
-          <p class="text-[11px] text-gray-400 uppercase tracking-wider">Razor Protocol</p>
+          <p class="text-[11px] text-gray-400 uppercase tracking-wider">Sterile Protocol</p>
         </div>
-        <div class="p-3">
+        <div class="p-3 border-l border-amber-500/20 pl-4 hover:border-amber-500 transition-colors">
           <div class="flex items-center gap-1.5 text-amber-500 mb-1">
             <i class="fa-solid fa-mug-hot text-xs"></i>
             <span class="text-sm font-bold text-white">VIP Lounge</span>
           </div>
           <p class="text-[11px] text-gray-400 uppercase tracking-wider">Artisan Espresso</p>
         </div>
-        <div class="p-3">
+        <div class="p-3 border-l border-amber-500/20 pl-4 hover:border-amber-500 transition-colors">
           <div class="flex items-center gap-1.5 text-amber-500 mb-1">
             <i class="fa-solid fa-location-dot text-xs"></i>
-            <span class="text-sm font-bold text-white">3 Branches</span>
+            <span class="text-sm font-bold text-white"><span data-counter="3">3</span> Branches</span>
           </div>
           <p class="text-[11px] text-gray-400 uppercase tracking-wider">JKT • SBY • MDN</p>
         </div>
@@ -220,7 +225,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <!-- Left: Image Showcase with Gold Accent Frame -->
-        <div class="lg:col-span-5 relative group">
+        <div class="lg:col-span-5 relative group reveal-item reveal-left">
           <div class="relative z-10 aspect-[4/5] bg-neutral-950 border border-neutral-800 overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1000&q=80" 
@@ -229,11 +234,11 @@
             />
           </div>
           <!-- Decorative geometric offset frame -->
-          <div class="absolute -bottom-4 -right-4 w-full h-full border border-amber-600/40 z-0 pointer-events-none hidden sm:block"></div>
+          <div class="absolute -bottom-4 -right-4 w-full h-full border border-amber-600/40 z-0 pointer-events-none hidden sm:block group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-500"></div>
           
-          <!-- Experience Badge -->
-          <div class="absolute bottom-6 left-6 z-20 bg-neutral-950/90 border border-amber-500/50 p-4 shadow-xl">
-            <span class="font-serif text-3xl font-bold text-amber-400 block leading-none">6+</span>
+          <!-- Experience Badge with Animated Counter -->
+          <div class="absolute bottom-6 left-6 z-20 bg-neutral-950/90 border border-amber-500/50 p-4 shadow-xl backdrop-blur-sm animate-float-slow">
+            <span class="font-serif text-3xl font-bold text-amber-400 block leading-none" data-counter="6" data-suffix="+">6+</span>
             <span class="text-[10px] uppercase tracking-widest text-gray-300 font-semibold mt-1 block">
               Years of Dedication
             </span>
@@ -241,7 +246,7 @@
         </div>
 
         <!-- Right: Story, Vision & Value Pillars -->
-        <div class="lg:col-span-7 space-y-6">
+        <div class="lg:col-span-7 space-y-6 reveal-item reveal-right">
           
           <div class="space-y-2">
             <span class="text-xs uppercase tracking-[0.25em] text-amber-500 font-semibold block">
@@ -263,35 +268,35 @@
 
           <!-- 4 Pillars Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-            <div class="card-luxury p-4 rounded-none border border-neutral-800">
-              <div class="w-8 h-8 rounded-none bg-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-2">
-                <i class="fa-solid fa-scissors text-sm"></i>
+            <div class="card-luxury p-4 rounded-none border border-neutral-800 group hover:border-amber-500/80 transition-all reveal-item delay-100">
+              <div class="w-8 h-8 rounded-none bg-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-2 group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-scissors text-sm scissor-animate"></i>
               </div>
-              <h4 class="font-serif text-sm font-bold text-white mb-1">Master Craftsmanship</h4>
+              <h4 class="font-serif text-sm font-bold text-white mb-1 group-hover:text-amber-400 transition-colors">Master Craftsmanship</h4>
               <p class="text-xs text-gray-400 font-light">Teknik gunting manual presisi dan gradasi fade mulus sesuai kontur kepala.</p>
             </div>
 
-            <div class="card-luxury p-4 rounded-none border border-neutral-800">
-              <div class="w-8 h-8 rounded-none bg-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-2">
+            <div class="card-luxury p-4 rounded-none border border-neutral-800 group hover:border-amber-500/80 transition-all reveal-item delay-200">
+              <div class="w-8 h-8 rounded-none bg-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-2 group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-shield-halved text-sm"></i>
               </div>
-              <h4 class="font-serif text-sm font-bold text-white mb-1">Sterile Protocol</h4>
+              <h4 class="font-serif text-sm font-bold text-white mb-1 group-hover:text-amber-400 transition-colors">Sterile Protocol</h4>
               <p class="text-xs text-gray-400 font-light">100% silet baru steril di depan mata Anda & alat disterilisasi sinar UV.</p>
             </div>
 
-            <div class="card-luxury p-4 rounded-none border border-neutral-800">
-              <div class="w-8 h-8 rounded-none bg-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-2">
+            <div class="card-luxury p-4 rounded-none border border-neutral-800 group hover:border-amber-500/80 transition-all reveal-item delay-300">
+              <div class="w-8 h-8 rounded-none bg-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-2 group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-spa text-sm"></i>
               </div>
-              <h4 class="font-serif text-sm font-bold text-white mb-1">Hot Towel Ritual</h4>
+              <h4 class="font-serif text-sm font-bold text-white mb-1 group-hover:text-amber-400 transition-colors">Hot Towel Ritual</h4>
               <p class="text-xs text-gray-400 font-light">Handuk uap hangat aromaterapi pembuka pori-pori untuk sensasi relaksasi total.</p>
             </div>
 
-            <div class="card-luxury p-4 rounded-none border border-neutral-800">
-              <div class="w-8 h-8 rounded-none bg-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-2">
+            <div class="card-luxury p-4 rounded-none border border-neutral-800 group hover:border-amber-500/80 transition-all reveal-item delay-400">
+              <div class="w-8 h-8 rounded-none bg-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-2 group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-couch text-sm"></i>
               </div>
-              <h4 class="font-serif text-sm font-bold text-white mb-1">Executive Hospitality</h4>
+              <h4 class="font-serif text-sm font-bold text-white mb-1 group-hover:text-amber-400 transition-colors">Executive Hospitality</h4>
               <p class="text-xs text-gray-400 font-light">Nikmati sajian kopi single origin, wifi cepat, dan lounge yang privat.</p>
             </div>
           </div>
@@ -299,7 +304,7 @@
           <div class="pt-2">
             <a 
               href="#services" 
-              class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-amber-400 font-bold hover:text-amber-300 transition-colors"
+              class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-amber-400 font-bold hover:text-amber-300 transition-all hover:translate-x-1"
             >
               <span>Pelajari Layanan Kami</span>
               <i class="fa-solid fa-arrow-right"></i>
@@ -320,7 +325,7 @@
     <div class="max-w-7xl mx-auto">
       
       <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="text-center max-w-3xl mx-auto mb-12 reveal-item">
         <span class="text-xs uppercase tracking-[0.25em] text-amber-500 font-semibold block mb-2">
           MENU & PRICING
         </span>
@@ -401,7 +406,7 @@
   <section id="barbers" class="py-24 px-4 bg-neutral-900/30 relative border-t border-neutral-800/60">
     <div class="max-w-7xl mx-auto">
       
-      <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="text-center max-w-3xl mx-auto mb-12 reveal-item">
         <span class="text-xs uppercase tracking-[0.25em] text-amber-500 font-semibold block mb-2">
           MEET THE MASTERS
         </span>
@@ -430,7 +435,7 @@
   <section id="lookbook" class="py-24 px-4 bg-neutral-950 relative border-t border-neutral-800/60">
     <div class="max-w-7xl mx-auto">
       
-      <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="text-center max-w-3xl mx-auto mb-12 reveal-item">
         <span class="text-xs uppercase tracking-[0.25em] text-amber-500 font-semibold block mb-2">
           HAIRSTYLE INSPIRATION
         </span>
@@ -459,7 +464,7 @@
   <section class="py-20 px-4 bg-neutral-900/40 relative border-t border-neutral-800/60">
     <div class="max-w-7xl mx-auto">
       
-      <div class="text-center max-w-2xl mx-auto mb-12">
+      <div class="text-center max-w-2xl mx-auto mb-12 reveal-item">
         <span class="text-xs uppercase tracking-[0.25em] text-amber-500 font-semibold block mb-2">
           TESTIMONIALS
         </span>
@@ -485,8 +490,8 @@
 
     <div class="max-w-6xl mx-auto relative z-10">
       
-      <div class="text-center max-w-3xl mx-auto mb-14">
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-600/10 border border-amber-500/30 text-amber-400 text-[10px] uppercase font-bold tracking-widest mb-3">
+      <div class="text-center max-w-3xl mx-auto mb-14 reveal-item">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-600/10 border border-amber-500/30 text-amber-400 text-[10px] uppercase font-bold tracking-widest mb-3 animate-float-slow">
           <i class="fa-brands fa-whatsapp text-xs text-emerald-400"></i>
           Direct WhatsApp Checkout
         </div>
@@ -505,7 +510,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         <!-- Left Column: The Interactive Booking Form -->
-        <div class="lg:col-span-7 card-luxury p-6 sm:p-8 rounded-none border border-neutral-800">
+        <div class="lg:col-span-7 card-luxury p-6 sm:p-8 rounded-none border border-neutral-800 gold-glow-animated reveal-item reveal-left">
           
           <form id="bookingForm" class="space-y-6">
             
@@ -665,7 +670,7 @@
         </div>
 
         <!-- Right Column: Branch Info & Live WhatsApp Preview Card -->
-        <div class="lg:col-span-5 space-y-6">
+        <div class="lg:col-span-5 space-y-6 reveal-item reveal-right">
           
           <!-- Live Branch Location Badge -->
           <div class="card-luxury p-6 rounded-none border border-neutral-800">
@@ -685,7 +690,7 @@
               </div>
               <div class="flex items-center gap-2 text-neutral-300">
                 <i class="fa-brands fa-whatsapp text-emerald-400"></i>
-                <span>WA Aktif: <strong id="previewBranchPhone" class="text-white font-normal">+62 812-3456-7890</strong></span>
+                <span>WA Aktif: <strong id="previewBranchPhone" class="text-white font-normal">+62 851-6908-4139</strong></span>
               </div>
             </div>
           </div>
@@ -742,7 +747,7 @@
   <section id="branches" class="py-24 px-4 bg-neutral-900/30 relative border-t border-neutral-800/60">
     <div class="max-w-7xl mx-auto">
       
-      <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="text-center max-w-3xl mx-auto mb-14 reveal-item">
         <span class="text-xs uppercase tracking-[0.25em] text-amber-500 font-semibold block mb-2">
           OUR LOCATIONS
         </span>
@@ -856,15 +861,15 @@
         <ul class="space-y-2.5 text-xs font-light">
           <li>
             <strong class="text-white block font-medium">Jakarta Selatan (Pusat):</strong>
-            <span class="text-neutral-400">WA: +62 812-3456-7890</span>
+            <span class="text-neutral-400">WA: +62 851-6908-4139</span>
           </li>
           <li>
             <strong class="text-white block font-medium">Surabaya Barat (Citraland):</strong>
-            <span class="text-neutral-400">WA: +62 813-9876-5432</span>
+            <span class="text-neutral-400">WA: +62 851-6908-4139</span>
           </li>
           <li>
             <strong class="text-white block font-medium">Medan (Johor):</strong>
-            <span class="text-neutral-400">WA: +62 819-8765-4321</span>
+            <span class="text-neutral-400">WA: +62 851-6908-4139</span>
           </li>
         </ul>
       </div>

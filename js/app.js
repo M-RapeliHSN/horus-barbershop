@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initCategoryFilters();
   initCurrentYear();
   initQuickScrollButtons();
+  initHeroParticles();
+  initScrollReveal();
+  initAnimatedCounters();
+  initCardTiltEffect();
 });
 
 /* ==========================================================================
@@ -70,10 +74,14 @@ function renderServices(filterCategory = 'all') {
     ? HORUS_DATA.services
     : HORUS_DATA.services.filter(s => s.category === filterCategory);
 
-  container.innerHTML = filtered.map(service => `
-    <div class="card-luxury p-6 flex flex-col justify-between group rounded-sm relative overflow-hidden" data-id="${service.id}">
+  container.innerHTML = filtered.map((service, idx) => `
+    <div 
+      class="card-luxury p-6 flex flex-col justify-between group rounded-sm relative overflow-hidden service-card-anim reveal-item is-visible" 
+      data-id="${service.id}"
+      style="animation-delay: ${idx * 60}ms;"
+    >
       ${service.badge ? `
-        <span class="absolute top-0 right-0 bg-amber-600/90 text-white text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-bl-sm">
+        <span class="absolute top-0 right-0 bg-amber-600/90 text-white text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-bl-sm shadow-md">
           ${service.badge}
         </span>
       ` : ''}
@@ -102,7 +110,7 @@ function renderServices(filterCategory = 'all') {
       <div class="pt-4 border-t border-neutral-800/80 flex items-center justify-between">
         <button 
           onclick="selectServiceForBooking('${service.id}')"
-          class="w-full py-2.5 px-4 text-xs font-semibold uppercase tracking-wider text-amber-400 border border-amber-600/40 hover:bg-amber-600 hover:text-white rounded-none transition-all duration-300 flex items-center justify-center gap-2 group/btn"
+          class="w-full py-2.5 px-4 text-xs font-semibold uppercase tracking-wider text-amber-400 border border-amber-600/40 hover:bg-amber-600 hover:text-white rounded-none transition-all duration-300 flex items-center justify-center gap-2 group/btn cursor-pointer shadow-sm hover:shadow-amber-600/30"
         >
           <span>Pilih Layanan Ini</span>
           <i class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition-transform"></i>
@@ -110,6 +118,8 @@ function renderServices(filterCategory = 'all') {
       </div>
     </div>
   `).join('');
+
+  initCardTiltEffect();
 }
 
 function initCategoryFilters() {
@@ -137,14 +147,14 @@ function renderBarbers() {
   const container = document.getElementById('barbersContainer');
   if (!container) return;
 
-  container.innerHTML = HORUS_DATA.barbers.map(barber => {
+  container.innerHTML = HORUS_DATA.barbers.map((barber, index) => {
     const branchNames = barber.branches.map(bId => {
       const b = HORUS_DATA.branches.find(item => item.id === bId);
       return b ? b.name.replace('Cabang ', '') : bId;
     }).join(' & ');
 
     return `
-      <div class="card-luxury rounded-sm overflow-hidden group flex flex-col justify-between">
+      <div class="card-luxury rounded-sm overflow-hidden group flex flex-col justify-between reveal-item delay-${(index + 1) * 100}">
         <div class="relative overflow-hidden aspect-[4/5] bg-neutral-950">
           <img 
             src="${barber.image}" 
@@ -155,7 +165,7 @@ function renderBarbers() {
           <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-transparent"></div>
           
           <div class="absolute bottom-4 left-4 right-4">
-            <span class="inline-block bg-amber-600/90 text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 mb-1.5 rounded-none">
+            <span class="inline-block bg-amber-600/90 text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 mb-1.5 rounded-none shadow-md">
               ${barber.experience}
             </span>
             <h3 class="font-serif-luxury text-xl font-bold text-white tracking-wide">
@@ -200,7 +210,7 @@ function renderBarbers() {
             </a>
             <button 
               onclick="selectBarberForBooking('${barber.id}')"
-              class="flex-1 py-2 px-3 text-xs uppercase tracking-wider font-semibold bg-neutral-950 hover:bg-amber-600 text-amber-400 hover:text-white border border-neutral-700 hover:border-amber-600 transition-all text-center"
+              class="flex-1 py-2 px-3 text-xs uppercase tracking-wider font-semibold bg-neutral-950 hover:bg-amber-600 text-amber-400 hover:text-white border border-neutral-700 hover:border-amber-600 transition-all text-center cursor-pointer shadow-sm hover:shadow-amber-600/30"
             >
               Booking Bersama ${barber.name.split(' ')[0]}
             </button>
@@ -218,8 +228,8 @@ function renderLookbook() {
   const container = document.getElementById('lookbookContainer');
   if (!container) return;
 
-  container.innerHTML = HORUS_DATA.lookbook.map(item => `
-    <div class="relative overflow-hidden rounded-sm group aspect-square bg-neutral-900 border border-neutral-800">
+  container.innerHTML = HORUS_DATA.lookbook.map((item, index) => `
+    <div class="relative overflow-hidden rounded-sm group aspect-square bg-neutral-900 border border-neutral-800 reveal-item reveal-scale delay-${((index % 3) + 1) * 100}">
       <img 
         src="${item.image}" 
         alt="${item.title}" 
@@ -250,17 +260,17 @@ function renderBranches() {
   const container = document.getElementById('branchesContainer');
   if (!container) return;
 
-  container.innerHTML = HORUS_DATA.branches.map(branch => `
-    <div class="card-luxury p-7 rounded-sm flex flex-col justify-between relative overflow-hidden group">
+  container.innerHTML = HORUS_DATA.branches.map((branch, index) => `
+    <div class="card-luxury p-7 rounded-sm flex flex-col justify-between relative overflow-hidden group reveal-item delay-${(index + 1) * 150}">
       ${branch.isPrimary ? `
-        <div class="absolute top-0 right-0 bg-amber-600 text-white text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-bl-sm">
+        <div class="absolute top-0 right-0 bg-amber-600 text-white text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-bl-sm shadow-md">
           Flagship Store
         </div>
       ` : ''}
 
       <div>
         <div class="flex items-center gap-3 mb-3">
-          <div class="w-10 h-10 rounded-none bg-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-500">
+          <div class="w-10 h-10 rounded-none bg-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
             <i class="fa-solid fa-shop text-lg"></i>
           </div>
           <div>
@@ -303,7 +313,7 @@ function renderBranches() {
         </a>
         <button 
           onclick="selectBranchForBooking('${branch.id}')"
-          class="flex-1 py-2 px-3 text-center text-xs font-semibold uppercase tracking-wider bg-amber-600 hover:bg-amber-500 text-white rounded-none transition-colors flex items-center justify-center gap-1.5"
+          class="flex-1 py-2 px-3 text-center text-xs font-semibold uppercase tracking-wider bg-amber-600 hover:bg-amber-500 text-white rounded-none transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-md hover:shadow-amber-600/30"
         >
           <span>Pilih Cabang</span>
           <i class="fa-solid fa-check text-[10px]"></i>
@@ -320,8 +330,8 @@ function renderTestimonials() {
   const container = document.getElementById('testimonialsContainer');
   if (!container) return;
 
-  container.innerHTML = HORUS_DATA.testimonials.map(item => `
-    <div class="card-luxury p-6 rounded-sm flex flex-col justify-between">
+  container.innerHTML = HORUS_DATA.testimonials.map((item, index) => `
+    <div class="card-luxury p-6 rounded-sm flex flex-col justify-between reveal-item delay-${(index + 1) * 150}">
       <div>
         <div class="flex items-center gap-1 text-amber-500 text-xs mb-4">
           ${Array(item.rating).fill('<i class="fa-solid fa-star"></i>').join('')}
@@ -686,3 +696,184 @@ function initQuickScrollButtons() {
     });
   }
 }
+
+/* ==========================================================================
+   11. Advanced Animations Engine (Particles, Scroll Reveal, Counters, 3D Tilt)
+   ========================================================================== */
+
+/**
+ * Ambient Golden Spark / Embers Canvas Animation in Hero
+ */
+function initHeroParticles() {
+  const canvas = document.getElementById('heroParticles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let particles = [];
+  const particleCount = 42;
+
+  function resize() {
+    if (!canvas.parentElement) return;
+    width = canvas.width = canvas.parentElement.offsetWidth;
+    height = canvas.height = canvas.parentElement.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * (width || 1200),
+      y: Math.random() * (height || 800),
+      size: Math.random() * 2.2 + 0.6,
+      speedY: Math.random() * 0.45 + 0.15,
+      speedX: (Math.random() - 0.5) * 0.25,
+      opacity: Math.random() * 0.6 + 0.2,
+      pulse: Math.random() * 0.015 + 0.005,
+      pulseDir: 1
+    });
+  }
+
+  function animate() {
+    if (!width || !height) {
+      resize();
+    }
+    ctx.clearRect(0, 0, width, height);
+    for (let p of particles) {
+      p.y -= p.speedY;
+      p.x += p.speedX;
+      p.opacity += p.pulse * p.pulseDir;
+      if (p.opacity > 0.8) p.pulseDir = -1;
+      if (p.opacity < 0.15) p.pulseDir = 1;
+
+      if (p.y < -10) {
+        p.y = height + 10;
+        p.x = Math.random() * width;
+      }
+      if (p.x < -10) p.x = width + 10;
+      if (p.x > width + 10) p.x = -10;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(245, 158, 11, ${Math.max(0, Math.min(1, p.opacity))})`;
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = '#d97706';
+      ctx.fill();
+    }
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+}
+
+/**
+ * Scroll Reveal Engine via IntersectionObserver
+ */
+let scrollObserver;
+function initScrollReveal() {
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal-item').forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+
+  scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        scrollObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -30px 0px'
+  });
+
+  refreshScrollReveal();
+}
+
+function refreshScrollReveal() {
+  if (!scrollObserver) return;
+  document.querySelectorAll('.reveal-item:not(.is-visible)').forEach(el => {
+    scrollObserver.observe(el);
+  });
+}
+
+/**
+ * Animated Number Counter
+ */
+function initAnimatedCounters() {
+  const counterElements = document.querySelectorAll('[data-counter]');
+  if (!counterElements.length) return;
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseFloat(el.getAttribute('data-counter'));
+        const prefix = el.getAttribute('data-prefix') || '';
+        const suffix = el.getAttribute('data-suffix') || '';
+        const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        const duration = 1600;
+        const startTime = performance.now();
+
+        function updateCounter(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease-out expo
+          const easeOut = 1 - Math.pow(2, -10 * progress);
+          const currentVal = target * easeOut;
+
+          if (decimals > 0) {
+            el.textContent = `${prefix}${currentVal.toFixed(decimals)}${suffix}`;
+          } else {
+            el.textContent = `${prefix}${Math.floor(currentVal).toLocaleString('id-ID')}${suffix}`;
+          }
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+          } else {
+            if (decimals > 0) {
+              el.textContent = `${prefix}${target.toFixed(decimals)}${suffix}`;
+            } else {
+              el.textContent = `${prefix}${target.toLocaleString('id-ID')}${suffix}`;
+            }
+          }
+        }
+
+        requestAnimationFrame(updateCounter);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  counterElements.forEach(el => counterObserver.observe(el));
+}
+
+/**
+ * Subtle 3D Magnetic Tilt Interaction on Cards
+ */
+function initCardTiltEffect() {
+  // Only activate on mouse-pointer devices (desktop)
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
+  const cards = document.querySelectorAll('.card-luxury');
+  cards.forEach(card => {
+    // Avoid re-attaching listeners
+    if (card.dataset.tiltInit) return;
+    card.dataset.tiltInit = 'true';
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -4;
+      const rotateY = ((x - centerX) / centerX) * 4;
+      card.style.transform = `perspective(900px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
